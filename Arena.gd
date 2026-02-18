@@ -16,13 +16,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-	# Check for input to advance to next question
-	#if Input.is_action_just_pressed("option_a") or \
-	   #Input.is_action_just_pressed("option_b") or \
-	   #Input.is_action_just_pressed("option_c") or \
-	   #Input.is_action_just_pressed("option_d"):
-		#next_question()
-		#display_question()
 
 func display_question():
 	# Check if we've reached the end
@@ -125,6 +118,7 @@ func _input(event):
 			display_question()
 	elif q["type"] == 1:
 			answer_lineedit.show()
+			answer_lineedit.clear()
 			if event.is_action_pressed("check_identification"):
 				var answer = answer_lineedit.text
 				check_answer(answer)
