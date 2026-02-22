@@ -11,15 +11,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bcb0y")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=964260501]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06423611
+anchor_top = 0.058641974
+anchor_right = 0.9507986
+anchor_bottom = 0.16385186
+offset_right = -0.3199997
+offset_bottom = -0.1760025
+theme_override_constants/separation = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerBarBox" type="VBoxContainer" parent="HBoxContainer" unique_id=1189427695]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerBar" type="ProgressBar" parent="HBoxContainer/PlayerBarBox" unique_id=1854774264]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer/PlayerBarBox" unique_id=713975233]
+layout_mode = 2
+text = "Player"
+
+[node name="BossBarBox" type="VBoxContainer" parent="HBoxContainer" unique_id=963944453]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
+metadata/_edit_use_anchors_ = true
+
+[node name="BossBar" type="ProgressBar" parent="HBoxContainer/BossBarBox" unique_id=1631586638]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer/BossBarBox" unique_id=1038620419]
+layout_mode = 2
+text = "Boss"
+horizontal_alignment = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2139320764]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.17899306
 anchor_top = 0.27827162
 anchor_right = 0.813132
-anchor_bottom = 0.8640865
-offset_left = -0.20000458
-offset_top = -0.3200035
+anchor_bottom = 0.5523581
+offset_left = -0.2000122
+offset_top = -0.32000732
 offset_right = 0.27197266
 offset_bottom = 0.07196045
 size_flags_horizontal = 3
@@ -39,45 +82,32 @@ visible = false
 layout_mode = 2
 placeholder_text = "Answer here..."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=964260501]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.06423611
-anchor_top = 0.058641974
-anchor_right = 0.9507986
-anchor_bottom = 0.16385186
-offset_right = -0.3199997
-offset_bottom = -0.1760025
-theme_override_constants/separation = 40
-metadata/_edit_use_anchors_ = true
+[node name="OptionsBox" type="HBoxContainer" parent="VBoxContainer" unique_id=1185272804]
+layout_mode = 2
+theme_override_constants/separation = 60
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1189427695]
+[node name="BtnA" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1609506180]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.5
-metadata/_edit_use_anchors_ = true
+text = "A"
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer2" unique_id=1854774264]
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=713975233]
-layout_mode = 2
-text = "Player"
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=963944453]
+[node name="BtnB" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1702507222]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.5
-metadata/_edit_use_anchors_ = true
+text = "B"
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer3" unique_id=1631586638]
+[node name="BtnC" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1609707850]
 layout_mode = 2
-metadata/_edit_use_anchors_ = true
+size_flags_horizontal = 3
+text = "C"
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1038620419]
+[node name="BtnD" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1752621232]
 layout_mode = 2
-text = "Boss"
-horizontal_alignment = 2
+size_flags_horizontal = 3
+text = "D"
+
+[connection signal="text_submitted" from="VBoxContainer/AnswerInput" to="." method="_on_answer_input_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnA" to="." method="_on_btn_a_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnB" to="." method="_on_btn_b_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnC" to="." method="_on_btn_c_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnD" to="." method="_on_btn_d_pressed"]

@@ -2,20 +2,43 @@ extends Control
 
 @onready var question_richtext_label := $VBoxContainer/QuestionRichTextLabel
 @onready var answer_lineedit := $VBoxContainer/AnswerInput
+@onready var player_bar = $HBoxContainer/PlayerBarBox/PlayerBar
+@onready var boss_bar = $HBoxContainer/BossBarBox/BossBar
+@onready var boss_bar_box = $HBoxContainer/BossBarBox
+@onready var player_bar_box = $HBoxContainer/PlayerBarBox
+
+@onready var options_box = $VBoxContainer/OptionsBox
+
 
 var questions = []
 var total_questions = 0
 var current_question = 0
 var score = 0
+var boss_life = 100.0
+var player_life = 100.0
+
+func set_player_boss_life():
+	player_bar.value = player_life
+	boss_bar.value = boss_life
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_questions()
 	get_total_question()
 	display_question()
+	set_player_boss_life()
 
 func _process(_delta: float) -> void:
-	pass
+	var q = questions[current_question]
+	if boss_life == 0.0 or player_life == 0.0:
+		restart_quiz()
+	if q["type"] == 0:
+		answer_lineedit.hide()
+		options_box.show()
+	elif q["type"] == 1:
+		answer_lineedit.show()
+		options_box.hide()
 
 func display_question():
 	# Check if we've reached the end
@@ -86,47 +109,77 @@ func load_questions():
 	else:
 		print("Could not open file: ", file_path)
 
+func player_damage():
+	var damage_point = 100.0 / total_questions
+	boss_life -= damage_point
+	boss_bar.value = boss_life
+	
+	if player_life == 0.0:
+		reset_quiz()
+
+
+func boss_damage():
+	var damage_point = (100.0 / total_questions) * 2
+	player_life -= damage_point
+	player_bar.value = player_life
+	
+	if boss_life == 0.0:
+		reset_quiz()
+
+
 func check_answer(selected_option):
 	var q = questions[current_question]
 	var correct_answer = q["answer"]
 	
 	if selected_option == correct_answer:
 		score += 1
+		player_damage()
 		print("Correct! Score: ", score)
 	else:
+		boss_damage()
 		print("Wrong! Score: ", score)
 
-func _input(event):
-	var q = questions[current_question]
-	if q["type"] == 0:
-		answer_lineedit.hide()
-		if event.is_action_pressed("option_a"):
-			check_answer("a")
-			next_question()
-			display_question()
-		elif event.is_action_pressed("option_b"):
-			check_answer("b")
-			next_question()
-			display_question()
-		elif event.is_action_pressed("option_c"):
-			check_answer("c")
-			next_question()
-			display_question()
-		elif event.is_action_pressed("option_d"):
-			check_answer("d")
-			next_question()
-			display_question()
-	elif q["type"] == 1:
-			answer_lineedit.show()
-			answer_lineedit.clear()
-			if event.is_action_pressed("check_identification"):
-				var answer = answer_lineedit.text
-				check_answer(answer)
-				next_question()
-				display_question()
-	
-	
+func restart_quiz():
+	player_bar_box.show()
+	boss_bar_box.show()
+	display_question()	
+
 func reset_quiz():
 	current_question = 0
 	score = 0
-	#display_question()
+	player_life = 100.0
+	boss_life = 100.0
+	set_player_boss_life()
+	player_bar_box.hide()
+	boss_bar_box.hide()
+
+
+func _on_btn_a_pressed() -> void:
+	check_answer("a")
+	next_question()
+	display_question()
+
+
+func _on_btn_b_pressed() -> void:
+	check_answer("b")
+	next_question()
+	display_question()
+
+
+func _on_btn_c_pressed() -> void:
+	check_answer("c")
+	next_question()
+	display_question()
+
+
+func _on_btn_d_pressed() -> void:
+	check_answer("d")
+	next_question()
+	display_question()
+
+
+func _on_answer_input_text_submitted(new_text: String) -> void:
+	check_answer(new_text)
+	answer_lineedit.clear()
+	next_question()
+	display_question()
