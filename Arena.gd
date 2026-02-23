@@ -1,23 +1,29 @@
 extends Control
 
-@onready var question_richtext_label := $VBoxContainer/QuestionRichTextLabel
-@onready var answer_lineedit := $VBoxContainer/AnswerInput
-@onready var player_bar = $HBoxContainer/PlayerBarBox/PlayerBar
-@onready var boss_bar = $HBoxContainer/BossBarBox/BossBar
-@onready var boss_bar_box = $HBoxContainer/BossBarBox
-@onready var player_bar_box = $HBoxContainer/PlayerBarBox
+@onready var question_richtext_label := $TabContainer/QuestionPage/VBoxContainer/QuestionRichTextLabel
+@onready var answer_lineedit := $TabContainer/QuestionPage/VBoxContainer/AnswerInput
+@onready var player_bar = $TabContainer/QuestionPage/HBoxContainer/PlayerBarBox/PlayerBar
+@onready var boss_bar = $TabContainer/QuestionPage/HBoxContainer/BossBarBox/BossBar
+@onready var boss_bar_box = $TabContainer/QuestionPage/HBoxContainer/BossBarBox
+@onready var player_bar_box = $TabContainer/QuestionPage/HBoxContainer/PlayerBarBox
 
-@onready var options_box = $VBoxContainer/OptionsBox
+@onready var options_box = $TabContainer/QuestionPage/VBoxContainer/OptionsBox
+@onready var start_quiz_panel = $TabContainer/EndQuizPage/StartQuizPanel
+@onready var start_quiz_title = $TabContainer/EndQuizPage/StartQuizPanel/Title
 
 
 var questions = []
 var total_questions = 0
 var current_question = 0
 var score = 0
-var boss_life = 100.0
-var player_life = 100.0
+var boss_life = 100
+var player_life = 100
+var correct_answers = 0
+var wrong_answers = 0
+var score_percentage = 0
+var unattended_questions = 0
 
-func set_player_boss_life():
+func give_player_boss_life():
 	player_bar.value = player_life
 	boss_bar.value = boss_life
 
@@ -27,28 +33,32 @@ func _ready() -> void:
 	load_questions()
 	get_total_question()
 	display_question()
-	set_player_boss_life()
+	give_player_boss_life()
 
 func _process(_delta: float) -> void:
-	var q = questions[current_question]
-	if boss_life == 0.0 or player_life == 0.0:
-		restart_quiz()
-	if q["type"] == 0:
-		answer_lineedit.hide()
-		options_box.show()
-	elif q["type"] == 1:
-		answer_lineedit.show()
-		options_box.hide()
+	if boss_life <= 0.0 or player_life <= 0.0:
+		reset_quiz()
 
 func display_question():
 	# Check if we've reached the end
-	if current_question >= total_questions:
-		question_richtext_label.text = "Quiz Complete! Thanks for playing!"
+	if current_question >= total_questions or (boss_life <= 0.0 or player_life <= 0.0):
+		score_percentage = score * (100.0 / total_questions)
+		unattended_questions = total_questions - current_question
+		var result_text = "[b]Quiz over![/b]\n"
+		result_text += "[b]Score:[/b] %.1f%%\n" % score_percentage
+		result_text += "[b]Correct answers:[/b] %d\t[b]Wrong answers:[/b] %d\t[b]Unattended question:[/b] %d\n" % [correct_answers,wrong_answers,unattended_questions] 
+		result_text += "[b]Total questions:[/b] %d" % total_questions
+		start_quiz_title.text = result_text
+		#options_box.hide()
+		#player_bar_box.hide()
+		#boss_bar_box.hide()
 		reset_quiz()
+		start_quiz_panel.show()
 		return
 	
 	var q = questions[current_question]
 	var question_text = ""
+		
 	
 	# Format the question number
 	question_text += "[b]Question %d/%d:[/b]\n" % [current_question + 1, total_questions]
@@ -68,10 +78,13 @@ func display_question():
 		question_text += "B. %s\n" % option_b
 		question_text += "C. %s\n" % option_c
 		question_text += "D. %s\n" % option_d
-		
+		answer_lineedit.hide()
+		options_box.show()
 	# Check for identification
 	if q["type"] == 1:
 		question_text += "[i](Type your answer)[/i]"
+		answer_lineedit.show()
+		options_box.hide()
 	
 	question_richtext_label.text = question_text
 
@@ -113,18 +126,12 @@ func player_damage():
 	var damage_point = 100.0 / total_questions
 	boss_life -= damage_point
 	boss_bar.value = boss_life
-	
-	if player_life == 0.0:
-		reset_quiz()
 
 
 func boss_damage():
 	var damage_point = (100.0 / total_questions) * 2
 	player_life -= damage_point
 	player_bar.value = player_life
-	
-	if boss_life == 0.0:
-		reset_quiz()
 
 
 func check_answer(selected_option):
@@ -134,24 +141,17 @@ func check_answer(selected_option):
 	if selected_option == correct_answer:
 		score += 1
 		player_damage()
-		print("Correct! Score: ", score)
+		correct_answers += 1
 	else:
 		boss_damage()
-		print("Wrong! Score: ", score)
-
-func restart_quiz():
-	player_bar_box.show()
-	boss_bar_box.show()
-	display_question()	
+		wrong_answers += 1
 
 func reset_quiz():
 	current_question = 0
 	score = 0
 	player_life = 100.0
 	boss_life = 100.0
-	set_player_boss_life()
-	player_bar_box.hide()
-	boss_bar_box.hide()
+	give_player_boss_life()
 
 
 func _on_btn_a_pressed() -> void:

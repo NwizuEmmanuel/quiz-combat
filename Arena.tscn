@@ -11,64 +11,62 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bcb0y")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=964260501]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1645611408]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.06423611
-anchor_top = 0.058641974
-anchor_right = 0.9507986
-anchor_bottom = 0.16385186
-offset_right = -0.3199997
-offset_bottom = -0.1760025
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="QuestionPage" type="VBoxContainer" parent="TabContainer" unique_id=1980597843]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/QuestionPage" unique_id=964260501]
+layout_mode = 2
 theme_override_constants/separation = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerBarBox" type="VBoxContainer" parent="HBoxContainer" unique_id=1189427695]
+[node name="PlayerBarBox" type="VBoxContainer" parent="TabContainer/QuestionPage/HBoxContainer" unique_id=1189427695]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.5
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerBar" type="ProgressBar" parent="HBoxContainer/PlayerBarBox" unique_id=1854774264]
+[node name="PlayerBar" type="ProgressBar" parent="TabContainer/QuestionPage/HBoxContainer/PlayerBarBox" unique_id=1854774264]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="HBoxContainer/PlayerBarBox" unique_id=713975233]
+[node name="Label" type="Label" parent="TabContainer/QuestionPage/HBoxContainer/PlayerBarBox" unique_id=713975233]
 layout_mode = 2
 text = "Player"
 
-[node name="BossBarBox" type="VBoxContainer" parent="HBoxContainer" unique_id=963944453]
+[node name="BossBarBox" type="VBoxContainer" parent="TabContainer/QuestionPage/HBoxContainer" unique_id=963944453]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.5
 metadata/_edit_use_anchors_ = true
 
-[node name="BossBar" type="ProgressBar" parent="HBoxContainer/BossBarBox" unique_id=1631586638]
+[node name="BossBar" type="ProgressBar" parent="TabContainer/QuestionPage/HBoxContainer/BossBarBox" unique_id=1631586638]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="HBoxContainer/BossBarBox" unique_id=1038620419]
+[node name="Label" type="Label" parent="TabContainer/QuestionPage/HBoxContainer/BossBarBox" unique_id=1038620419]
 layout_mode = 2
 text = "Boss"
 horizontal_alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2139320764]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.17899306
-anchor_top = 0.27827162
-anchor_right = 0.813132
-anchor_bottom = 0.5523581
-offset_left = -0.2000122
-offset_top = -0.32000732
-offset_right = 0.27197266
-offset_bottom = 0.07196045
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/QuestionPage" unique_id=2139320764]
+visible = false
+layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="QuestionRichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=741213471]
+[node name="QuestionRichTextLabel" type="RichTextLabel" parent="TabContainer/QuestionPage/VBoxContainer" unique_id=741213471]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
@@ -77,37 +75,75 @@ text = "Nothing here"
 fit_content = true
 metadata/_edit_use_anchors_ = true
 
-[node name="AnswerInput" type="LineEdit" parent="VBoxContainer" unique_id=1537207723]
+[node name="AnswerInput" type="LineEdit" parent="TabContainer/QuestionPage/VBoxContainer" unique_id=1537207723]
 visible = false
 layout_mode = 2
 placeholder_text = "Answer here..."
 
-[node name="OptionsBox" type="HBoxContainer" parent="VBoxContainer" unique_id=1185272804]
+[node name="OptionsBox" type="HBoxContainer" parent="TabContainer/QuestionPage/VBoxContainer" unique_id=1185272804]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="BtnA" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1609506180]
+[node name="BtnA" type="Button" parent="TabContainer/QuestionPage/VBoxContainer/OptionsBox" unique_id=1609506180]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "A"
 
-[node name="BtnB" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1702507222]
+[node name="BtnB" type="Button" parent="TabContainer/QuestionPage/VBoxContainer/OptionsBox" unique_id=1702507222]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "B"
 
-[node name="BtnC" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1609707850]
+[node name="BtnC" type="Button" parent="TabContainer/QuestionPage/VBoxContainer/OptionsBox" unique_id=1609707850]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "C"
 
-[node name="BtnD" type="Button" parent="VBoxContainer/OptionsBox" unique_id=1752621232]
+[node name="BtnD" type="Button" parent="TabContainer/QuestionPage/VBoxContainer/OptionsBox" unique_id=1752621232]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "D"
 
-[connection signal="text_submitted" from="VBoxContainer/AnswerInput" to="." method="_on_answer_input_text_submitted"]
-[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnA" to="." method="_on_btn_a_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnB" to="." method="_on_btn_b_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnC" to="." method="_on_btn_c_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsBox/BtnD" to="." method="_on_btn_d_pressed"]
+[node name="EndQuizPage" type="PanelContainer" parent="TabContainer" unique_id=213923248]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="StartQuizPanel" type="Panel" parent="TabContainer/EndQuizPage" unique_id=1204353142]
+visible = false
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="RichTextLabel" parent="TabContainer/EndQuizPage/StartQuizPanel" unique_id=2018213537]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055155877
+anchor_top = 0.06628242
+anchor_right = 0.9377842
+anchor_bottom = 0.6950144
+offset_right = -0.056007385
+offset_bottom = -0.17000198
+bbcode_enabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="StartQuizBtn" type="Button" parent="TabContainer/EndQuizPage/StartQuizPanel" unique_id=17934988]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3003732
+anchor_top = 0.8040346
+anchor_right = 0.6876634
+anchor_bottom = 0.90776944
+offset_right = 0.5
+offset_bottom = 0.0039978027
+text = "START QUIZ"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="text_submitted" from="TabContainer/QuestionPage/VBoxContainer/AnswerInput" to="." method="_on_answer_input_text_submitted"]
+[connection signal="pressed" from="TabContainer/QuestionPage/VBoxContainer/OptionsBox/BtnA" to="." method="_on_btn_a_pressed"]
+[connection signal="pressed" from="TabContainer/QuestionPage/VBoxContainer/OptionsBox/BtnB" to="." method="_on_btn_b_pressed"]
+[connection signal="pressed" from="TabContainer/QuestionPage/VBoxContainer/OptionsBox/BtnC" to="." method="_on_btn_c_pressed"]
+[connection signal="pressed" from="TabContainer/QuestionPage/VBoxContainer/OptionsBox/BtnD" to="." method="_on_btn_d_pressed"]
