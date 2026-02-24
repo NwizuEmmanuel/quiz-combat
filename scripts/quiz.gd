@@ -1,15 +1,10 @@
 extends Control
 
-@onready var question_richtext_label := $TabContainer/QuestionPage/VBoxContainer/QuestionRichTextLabel
-@onready var answer_lineedit := $TabContainer/QuestionPage/VBoxContainer/AnswerInput
-@onready var player_bar = $TabContainer/QuestionPage/HBoxContainer/PlayerBarBox/PlayerBar
-@onready var boss_bar = $TabContainer/QuestionPage/HBoxContainer/BossBarBox/BossBar
-@onready var boss_bar_box = $TabContainer/QuestionPage/HBoxContainer/BossBarBox
-@onready var player_bar_box = $TabContainer/QuestionPage/HBoxContainer/PlayerBarBox
-
-@onready var options_box = $TabContainer/QuestionPage/VBoxContainer/OptionsBox
-@onready var start_quiz_panel = $TabContainer/EndQuizPage/StartQuizPanel
-@onready var start_quiz_title = $TabContainer/EndQuizPage/StartQuizPanel/Title
+@onready var question := $question/richtext_label
+@onready var answer_input := $question/answer_input
+@onready var player_bar := $lifebar/player/lifebar
+@onready var boss_bar := $lifebar/boss/lifebar
+@onready var options_box := $question/options
 
 
 var questions = []
@@ -18,10 +13,6 @@ var current_question = 0
 var score = 0
 var boss_life = 100
 var player_life = 100
-var correct_answers = 0
-var wrong_answers = 0
-var score_percentage = 0
-var unattended_questions = 0
 
 func give_player_boss_life():
 	player_bar.value = player_life
@@ -42,18 +33,9 @@ func _process(_delta: float) -> void:
 func display_question():
 	# Check if we've reached the end
 	if current_question >= total_questions or (boss_life <= 0.0 or player_life <= 0.0):
-		score_percentage = score * (100.0 / total_questions)
-		unattended_questions = total_questions - current_question
-		var result_text = "[b]Quiz over![/b]\n"
-		result_text += "[b]Score:[/b] %.1f%%\n" % score_percentage
-		result_text += "[b]Correct answers:[/b] %d\t[b]Wrong answers:[/b] %d\t[b]Unattended question:[/b] %d\n" % [correct_answers,wrong_answers,unattended_questions] 
-		result_text += "[b]Total questions:[/b] %d" % total_questions
-		start_quiz_title.text = result_text
-		#options_box.hide()
-		#player_bar_box.hide()
-		#boss_bar_box.hide()
+		Global.get_data(score,total_questions)
 		reset_quiz()
-		start_quiz_panel.show()
+		get_tree().change_scene_to_file("res://scenes/result.tscn")
 		return
 	
 	var q = questions[current_question]
@@ -78,15 +60,15 @@ func display_question():
 		question_text += "B. %s\n" % option_b
 		question_text += "C. %s\n" % option_c
 		question_text += "D. %s\n" % option_d
-		answer_lineedit.hide()
+		answer_input.hide()
 		options_box.show()
 	# Check for identification
 	if q["type"] == 1:
 		question_text += "[i](Type your answer)[/i]"
-		answer_lineedit.show()
+		answer_input.show()
 		options_box.hide()
 	
-	question_richtext_label.text = question_text
+	question.text = question_text
 
 func next_question():
 	if current_question < total_questions - 1:
@@ -141,10 +123,8 @@ func check_answer(selected_option):
 	if selected_option == correct_answer:
 		score += 1
 		player_damage()
-		correct_answers += 1
 	else:
 		boss_damage()
-		wrong_answers += 1
 
 func reset_quiz():
 	current_question = 0
@@ -154,32 +134,32 @@ func reset_quiz():
 	give_player_boss_life()
 
 
-func _on_btn_a_pressed() -> void:
+func _on_answer_input_text_submitted(new_text: String) -> void:
+	check_answer(new_text)
+	answer_input.clear()
+	next_question()
+	display_question()
+
+
+func _on_button_a_pressed() -> void:
 	check_answer("a")
 	next_question()
 	display_question()
 
 
-func _on_btn_b_pressed() -> void:
+func _on_button_b_pressed() -> void:
 	check_answer("b")
 	next_question()
 	display_question()
 
 
-func _on_btn_c_pressed() -> void:
+func _on_button_c_pressed() -> void:
 	check_answer("c")
 	next_question()
 	display_question()
 
 
-func _on_btn_d_pressed() -> void:
+func _on_button_d_pressed() -> void:
 	check_answer("d")
-	next_question()
-	display_question()
-
-
-func _on_answer_input_text_submitted(new_text: String) -> void:
-	check_answer(new_text)
-	answer_lineedit.clear()
 	next_question()
 	display_question()
