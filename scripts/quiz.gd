@@ -29,6 +29,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if boss_life <= 0.0 or player_life <= 0.0:
 		reset_quiz()
+	if Input.is_action_pressed("go_to_hub"):
+		get_tree().change_scene_to_file("res://scenes/HUB.tscn")
 
 func display_question():
 	# Check if we've reached the end
@@ -82,7 +84,7 @@ func get_total_question():
 	print("Total questions loaded: ", total_questions)
 
 func load_questions():
-	var file_path = "res://quiz_samples/quiz1.json"
+	var file_path = Global.quiz_file_path
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	
 	if file:
