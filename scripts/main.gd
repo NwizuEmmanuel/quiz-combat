@@ -10,6 +10,8 @@ var save_dir := "user://quizzes/"
 var pending_source_path : String = ""
 var pending_target_path: String = ""
 
+var hub_scene = preload("res://scenes/HUB.tscn")
+var hub_instance: CanvasLayer = null
 
 func _ready() -> void:
 	add_button.connect("pressed", _on_add_button_pressed)
@@ -25,9 +27,30 @@ func _ready() -> void:
 	
 	refresh_file_list()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("go_to_hub"):
-		get_tree().change_scene_to_file("res://scenes/HUB.tscn")
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("go_to_hub"):
+		toggle_hub()
+
+func toggle_hub():
+	if hub_instance == null:
+		open_hub()
+	else:
+		close_hub()
+
+
+func open_hub():
+	if hub_instance != null:
+		return # already open
+	hub_instance = hub_scene.instantiate()
+	add_child(hub_instance)
+
+
+func close_hub():
+	if hub_instance == null:
+		return
+	hub_instance.queue_free()
+	hub_instance = null
+	
 
 # SELECT FILE
 func _on_add_button_pressed() -> void:

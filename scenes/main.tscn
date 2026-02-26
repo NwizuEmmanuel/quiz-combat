@@ -12,7 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_o5qli")
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=272767719]
-title = "Open Quiz"
+title = "Open a File"
 file_mode = 0
 display_mode = 1
 access = 2

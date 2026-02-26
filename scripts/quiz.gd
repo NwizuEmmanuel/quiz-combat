@@ -14,6 +14,34 @@ var score = 0
 var boss_life = 100
 var player_life = 100
 
+var hub_scene = preload("res://scenes/HUB.tscn")
+var hub_instance: CanvasLayer = null
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("go_to_hub"):
+		toggle_hub()
+
+func toggle_hub():
+	if hub_instance == null:
+		open_hub()
+	else:
+		close_hub()
+
+func open_hub():
+	if hub_instance != null:
+		return
+	hub_instance = hub_scene.instantiate()
+	add_child(hub_instance)
+
+
+func close_hub():
+	if hub_instance == null:
+		return
+	hub_instance.queue_free()
+	hub_instance = null
+		
+
+
 func give_player_boss_life():
 	player_bar.value = player_life
 	boss_bar.value = boss_life
@@ -29,8 +57,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if boss_life <= 0.0 or player_life <= 0.0:
 		reset_quiz()
-	if Input.is_action_pressed("go_to_hub"):
-		get_tree().change_scene_to_file("res://scenes/HUB.tscn")
 
 func display_question():
 	# Check if we've reached the end

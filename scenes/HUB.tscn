@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" uid="uid://b46oj7owjjnx" path="res://scripts/hub.gd" id="1_fglp0"]
 
-[node name="Hub" type="Control" unique_id=217490857]
-layout_mode = 3
+[node name="CanvasLayer" type="CanvasLayer" unique_id=45043784]
+script = ExtResource("1_fglp0")
+
+[node name="Panel" type="Panel" parent="." unique_id=1754652206]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fglp0")
 
-[node name="VBox" type="VBoxContainer" parent="." unique_id=1535920191]
+[node name="VBox" type="VBoxContainer" parent="Panel" unique_id=1535920191]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,12 +26,12 @@ offset_bottom = 69.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGame" type="Button" parent="VBox" unique_id=1230524582]
+[node name="StartGame" type="Button" parent="Panel/VBox" unique_id=1230524582]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "START GAME"
 
-[node name="Exit" type="Button" parent="VBox" unique_id=2040810428]
+[node name="Exit" type="Button" parent="Panel/VBox" unique_id=2040810428]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "EXIT"

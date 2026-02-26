@@ -1,7 +1,7 @@
-extends Control
+extends CanvasLayer
 
-@onready var start_game_btn = $VBox/StartGame
-@onready var exit_btn = $VBox/Exit
+@onready var start_game_btn = $Panel/VBox/StartGame
+@onready var exit_btn = $Panel/VBox/Exit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
