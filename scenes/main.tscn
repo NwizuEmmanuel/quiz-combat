@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://3cjr2usax6qu"]
 
 [ext_resource type="Script" uid="uid://b4jdwpfavcyhg" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://bhrc2465eirc5" path="res://bg_images/white-crinkled-paper-texture-background.jpg" id="2_sugp2"]
+[ext_resource type="FontFile" uid="uid://b5wtg44ghykfr" path="res://fonts/SpaceGrotesk-SemiBold.ttf" id="3_jyhfs"]
 
 [node name="main" type="Control" unique_id=1266585142]
 layout_mode = 3
@@ -10,6 +12,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o5qli")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1818123880]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1760.0
+offset_top = -3176.0
+offset_right = 1760.0
+offset_bottom = 3176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sugp2")
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=272767719]
 title = "Open a File"
@@ -34,14 +49,20 @@ layout_mode = 2
 
 [node name="SelectQuizFile" type="Button" parent="VBox/HBox" unique_id=669538114]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jyhfs")
+theme_override_font_sizes/font_size = 26
 text = "Select quiz file"
 
 [node name="DeleteQuiz" type="Button" parent="VBox/HBox" unique_id=1880156330]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jyhfs")
+theme_override_font_sizes/font_size = 26
 text = "Delete Quiz"
 
 [node name="ItemList" type="ItemList" parent="VBox" unique_id=2062393255]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_jyhfs")
+theme_override_font_sizes/font_size = 26
 
 [node name="OverwriteDialog" type="ConfirmationDialog" parent="." unique_id=1503020114]
