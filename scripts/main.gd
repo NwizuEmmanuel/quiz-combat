@@ -19,6 +19,11 @@ func _ready() -> void:
 	overwrite_dialog.confirmed.connect(_on_overwrite_confirmed)
 	item_list.connect("item_activated",_on_item_activited)
 	file_dialog.file_selected.connect(_on_file_dialog_file_selected)
+	# button hover/press sound
+	add_button.connect("mouse_entered", play_hover_sound)
+	delete_button.connect("mouse_entered",play_hover_sound)
+	add_button.connect("pressed", play_press_sound)
+	delete_button.connect("pressed", play_press_sound)
 	
 	# Ensure folder exists
 	DirAccess.make_dir_recursive_absolute(
@@ -26,6 +31,12 @@ func _ready() -> void:
 	)
 	
 	refresh_file_list()
+
+func play_press_sound():
+	SoundsEffect.play_sound(preload("res://sounds/button_press.mp3"))
+
+func play_hover_sound():
+	SoundsEffect.play_sound(preload("res://sounds/button_hover.mp3"))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("go_to_hub"):
@@ -106,6 +117,7 @@ func refresh_file_list():
 
 # CLICK ITEM
 func _on_item_activited(index: int) -> void:
+	play_press_sound()
 	var file_name = item_list.get_item_text(index)
 	var full_path = save_dir + file_name
 	Global.quiz_file_path = full_path

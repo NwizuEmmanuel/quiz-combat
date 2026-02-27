@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dcgddmxmosp27" path="res://scripts/sounds_effect.gd" id="1_sxi50"]
 
-[node name="UISounds" type="AudioStreamPlayer" unique_id=52571564]
+[node name="SoundEffects" type="AudioStreamPlayer" unique_id=145483323]
 script = ExtResource("1_sxi50")

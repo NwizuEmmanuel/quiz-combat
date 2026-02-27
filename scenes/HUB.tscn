@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://5lnq1moklflw"]
 
 [ext_resource type="Script" uid="uid://b46oj7owjjnx" path="res://scripts/hub.gd" id="1_fglp0"]
-[ext_resource type="Texture2D" uid="uid://bhrc2465eirc5" path="res://bg_images/white-crinkled-paper-texture-background.jpg" id="2_bbo4x"]
 [ext_resource type="FontFile" uid="uid://b5wtg44ghykfr" path="res://fonts/SpaceGrotesk-SemiBold.ttf" id="3_0fbno"]
 [ext_resource type="AudioStream" uid="uid://b27tfk48n7lfl" path="res://sounds/button_hover.mp3" id="4_o0l1f"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0fbno"]
+load_path = "res://.godot/imported/white-crinkled-paper-texture-background.jpg-9bd3bee3bde5bd258ece8bd62678008f.ctex"
 
 [node name="HUB" type="CanvasLayer" unique_id=45043784]
 script = ExtResource("1_fglp0")
@@ -26,7 +28,7 @@ offset_right = 1760.0
 offset_bottom = 3176.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_bbo4x")
+texture = SubResource("CompressedTexture2D_0fbno")
 
 [node name="VBox" type="VBoxContainer" parent="Panel" unique_id=1535920191]
 layout_mode = 1

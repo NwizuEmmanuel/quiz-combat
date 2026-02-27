@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dak8te1nbfsm2"]
 
 [ext_resource type="Script" uid="uid://cgahncrvwc1ni" path="res://scripts/result.gd" id="1_aqgun"]
+[ext_resource type="Texture2D" uid="uid://bhrc2465eirc5" path="res://bg_images/white-crinkled-paper-texture-background.jpg" id="2_532bo"]
+[ext_resource type="FontFile" uid="uid://b5wtg44ghykfr" path="res://fonts/SpaceGrotesk-SemiBold.ttf" id="3_dtx8l"]
 
 [node name="result" type="Control" unique_id=422264119]
 layout_mode = 3
@@ -10,6 +12,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aqgun")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=260631392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_532bo")
 
 [node name="root" type="VBoxContainer" parent="." unique_id=1683177196]
 layout_mode = 1
@@ -29,20 +40,28 @@ theme_override_constants/separation = 50
 [node name="richtext_label" type="RichTextLabel" parent="root" unique_id=1843512326]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_dtx8l")
+theme_override_fonts/bold_font = ExtResource("3_dtx8l")
+theme_override_fonts/bold_italics_font = ExtResource("3_dtx8l")
+theme_override_fonts/italics_font = ExtResource("3_dtx8l")
+theme_override_fonts/mono_font = ExtResource("3_dtx8l")
 theme_override_font_sizes/normal_font_size = 36
 theme_override_font_sizes/bold_font_size = 36
 theme_override_font_sizes/bold_italics_font_size = 36
 theme_override_font_sizes/italics_font_size = 36
 theme_override_font_sizes/mono_font_size = 36
 bbcode_enabled = true
-text = "fffff"
+text = "Something here..."
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="restart_btn" type="Button" parent="root" unique_id=893523177]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_dtx8l")
 theme_override_font_sizes/font_size = 36
 text = "Restart"
 
+[connection signal="mouse_entered" from="root/restart_btn" to="." method="_on_restart_btn_mouse_entered"]
 [connection signal="pressed" from="root/restart_btn" to="." method="_on_restart_btn_pressed"]

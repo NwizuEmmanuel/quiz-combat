@@ -18,4 +18,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_restart_btn_pressed() -> void:
+	SoundsEffect.play_sound(preload("res://sounds/button_press.mp3"))
 	get_tree().change_scene_to_file("res://scenes/quiz.tscn")
+
+
+func _on_restart_btn_mouse_entered() -> void:
+	SoundsEffect.play_sound(preload("res://sounds/button_hover.mp3"))

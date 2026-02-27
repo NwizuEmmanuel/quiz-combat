@@ -161,8 +161,14 @@ func reset_quiz():
 	boss_life = 100.0
 	give_player_boss_life()
 
+func play_press_sound():
+	SoundsEffect.play_sound(preload("res://sounds/button_press.mp3"))
+
+func play_hover_sound():
+	SoundsEffect.play_sound(preload("res://sounds/button_hover.mp3"))
 
 func _on_answer_input_text_submitted(new_text: String) -> void:
+	play_press_sound()
 	check_answer(new_text)
 	answer_input.clear()
 	next_question()
@@ -170,24 +176,43 @@ func _on_answer_input_text_submitted(new_text: String) -> void:
 
 
 func _on_button_a_pressed() -> void:
+	play_press_sound()
 	check_answer("a")
 	next_question()
 	display_question()
 
 
 func _on_button_b_pressed() -> void:
+	play_press_sound()
 	check_answer("b")
 	next_question()
 	display_question()
 
 
 func _on_button_c_pressed() -> void:
+	play_press_sound()
 	check_answer("c")
 	next_question()
 	display_question()
 
 
 func _on_button_d_pressed() -> void:
+	play_press_sound()
 	check_answer("d")
 	next_question()
 	display_question()
+
+func _on_button_a_mouse_entered() -> void:
+	play_hover_sound()
+
+
+func _on_button_b_mouse_entered() -> void:
+	play_hover_sound()
+
+
+func _on_button_c_mouse_entered() -> void:
+	play_hover_sound()
+
+
+func _on_button_d_mouse_entered() -> void:
+	play_hover_sound()

@@ -17,7 +17,8 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 Global="*uid://dgbu604y71b2e"
-SoundsEffect="*uid://cg57x6p0qfuyb"
+SoundsEffect="*uid://dcgddmxmosp27"
+BgMusic="*uid://bnxc4vqhaawg0"
 
 [input]
 
