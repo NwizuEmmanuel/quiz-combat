@@ -7,9 +7,11 @@ func _ready() -> void:
 	var result_text = ""
 	if Global._score == Global._total_questions:
 		result_text += "[b]Quiz over! \t You Win![/b]\n"
+		Global.level +=2
 	else:
 		result_text += "[b]Quiz over! \t You Lose![/b]\n"
-	result_text += "[b]Score:[/b] %d/%d\n" % [Global._score, Global._total_questions]
+	result_text += "[b]Score:[/b] %d/%d\n\n" % [Global._score, Global._total_questions]
+	result_text += "[b]Level:[/b] %d\n" % Global.level
 	result_label.text = result_text
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
