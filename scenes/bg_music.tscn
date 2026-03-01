@@ -5,5 +5,4 @@
 [node name="BgMusic" type="AudioStreamPlayer" unique_id=355499907]
 stream = ExtResource("1_f6gl3")
 volume_db = -11.363
-autoplay = true
 parameters/looping = true

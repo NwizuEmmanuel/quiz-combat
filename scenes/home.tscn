@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://crewg1q85itbc"]
+
+[ext_resource type="Texture2D" uid="uid://bgix3lcfqq6x0" path="res://icons/play_circle_26dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" id="1_u4wd2"]
+[ext_resource type="Script" uid="uid://djsiyfseay4xd" path="res://scripts/home.gd" id="1_w18ys"]
+[ext_resource type="Texture2D" uid="uid://6mb4cbicclxc" path="res://icons/add_circle_26dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" id="2_w18ys"]
+
+[node name="Home" type="Control" unique_id=1944007180]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w18ys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1610113107]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -33.0
+offset_right = 54.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="VBoxContainer" unique_id=1124413609]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "START GAME"
+icon = ExtResource("1_u4wd2")
+
+[node name="CreateQuiz" type="Button" parent="VBoxContainer" unique_id=1895602357]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "CREATE QUIZ"
+icon = ExtResource("2_w18ys")

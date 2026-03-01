@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="quiz-combat"
-run/main_scene="uid://5lnq1moklflw"
+run/main_scene="uid://crewg1q85itbc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
