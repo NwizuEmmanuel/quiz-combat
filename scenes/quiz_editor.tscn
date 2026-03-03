@@ -42,6 +42,7 @@ text = "Multiple Choice"
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Question here..."
+wrap_mode = 1
 
 [node name="QuestionError" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=1382696862]
 visible = false
@@ -84,18 +85,17 @@ visible = false
 layout_mode = 2
 theme = ExtResource("2_lvq7x")
 
-[node name="AnswerLabel" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=122526331]
-visible = false
+[node name="MultipleChoiceAnswerLabel" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=122526331]
 layout_mode = 2
-text = "Answer must be 1 - 4 only"
+text = "Choose 1-4"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=272954416]
+[node name="MultipleChoiceAnswer" type="SpinBox" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=272954416]
 layout_mode = 2
 min_value = 1.0
 max_value = 4.0
 value = 1.0
 
-[node name="Answer" type="LineEdit" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=424278266]
+[node name="IdentificationAnswer" type="LineEdit" parent="MarginContainer/HSplitContainer/VBoxContainer" unique_id=424278266]
 layout_mode = 2
 placeholder_text = "Answer..."
 
@@ -139,3 +139,5 @@ text = "DELETE"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CLEAR SELECTION"
+
+[connection signal="item_activated" from="MarginContainer/HSplitContainer/VBoxContainer2/QuestionsList" to="." method="_on_questions_list_item_activated"]
