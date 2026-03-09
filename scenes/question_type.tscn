@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cew5v04ph4ppq"]
+
+[ext_resource type="Script" uid="uid://c3cfiuef2xc2q" path="res://scripts/quiz.gd" id="1_10wbr"]
+
+[node name="QuestionType" type="Control" unique_id=220838718]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_10wbr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2106182792]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -60.5
+offset_right = 141.0
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=253618500]
+layout_mode = 2
+text = "CHOOSE YOUR QUESTION TYPE"
+
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=777095035]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MultipleChoiceButton" type="Button" parent="VBoxContainer" unique_id=1962335481]
+layout_mode = 2
+text = "MULTIPLE CHOICE"
+
+[node name="IdentificationButton" type="Button" parent="VBoxContainer" unique_id=385947016]
+layout_mode = 2
+text = "IDENTIFICATION"
+
+[connection signal="pressed" from="VBoxContainer/MultipleChoiceButton" to="." method="_on_multiple_choice_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/IdentificationButton" to="." method="_on_identification_button_pressed"]
