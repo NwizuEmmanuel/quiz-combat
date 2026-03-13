@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Quizzes" format=3]
+
+[ext_resource type="Script" uid="uid://baimcgjqmip18" path="res://scripts/question_item.gd" id="1_lwxrx"]
+[ext_resource type="Script" uid="uid://d3g6dgnsjqk1v" path="res://scripts/questions.gd" id="2_rrull"]
+
+[resource]
+script = ExtResource("2_rrull")
+title = "demo"

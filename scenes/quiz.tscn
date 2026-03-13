@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://cuodd8xkhn7k1"]
-
-[ext_resource type="Script" uid="uid://c3cfiuef2xc2q" path="res://scripts/quiz.gd" id="1_jng0p"]
-
-[node name="Quiz" type="Control" unique_id=1017258655]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_jng0p")

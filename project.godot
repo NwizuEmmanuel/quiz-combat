@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 buses/default_bus_layout=""
 
+[autoload]
+
+QuizData="*uid://c3cfiuef2xc2q"
+
 [display]
 
 window/stretch/mode="canvas_items"
