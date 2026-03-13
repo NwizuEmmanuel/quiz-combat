@@ -10,3 +10,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ypbgi")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1996682973]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -489.5
+offset_top = -250.0
+offset_right = 489.5
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=720776416]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=442922037]
+layout_mode = 2
+
+[node name="QuestionText" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1157303053]
+layout_mode = 2
+bbcode_enabled = true
+text = "NOTHING YET..."
+fit_content = true
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=574498043]
+layout_mode = 2
+columns = 2
+
+[node name="OptionA" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=809756720]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION A"
+
+[node name="OptionB" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1080680310]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION B"
+
+[node name="OptionC" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=462361655]
+layout_mode = 2
+text = "OPTION C"
+
+[node name="OptionD" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=226957675]
+layout_mode = 2
+text = "OPTION D"

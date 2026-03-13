@@ -33,10 +33,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=964369710]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=713956654]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=964369710]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "QUIZ EDITOR"
+
+[node name="GoBackButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=789397927]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "GO BACK"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2" unique_id=1965498014]
 layout_mode = 2
@@ -197,6 +205,7 @@ unique_name_in_owner = true
 oversampling_override = 1.0
 position = Vector2i(0, 36)
 
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/QuestionTypeOptionButton" to="." method="_on_question_type_option_button_item_selected"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/AddButton" to="." method="_on_add_button_pressed"]
 [connection signal="item_activated" from="PanelContainer/HBoxContainer/VBoxContainer/QuizEditorItemList" to="." method="_on_quiz_editor_item_list_item_activated"]
