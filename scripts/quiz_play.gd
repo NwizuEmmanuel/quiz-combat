@@ -1,6 +1,8 @@
 extends Node
 
 
+var quiz_file = load(QuizData.quiz_path) as Questions
+var quiz_questions = quiz_file.questions
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

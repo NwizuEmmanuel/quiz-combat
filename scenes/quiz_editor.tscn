@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bayl5swv4jvty"]
 
 [ext_resource type="Script" uid="uid://d1suklpkgoesf" path="res://scripts/quiz_editor.gd" id="1_0yhu0"]
+[ext_resource type="Texture2D" uid="uid://c3gnctu2ea20i" path="res://assets/images/chenspec-art-7018244.jpg" id="2_lvq7x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ymo6"]
+texture = ExtResource("2_lvq7x")
 
 [node name="QuizEditor" type="Control" unique_id=698393837]
 layout_mode = 3
@@ -11,47 +15,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0yhu0")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=631490636]
+[node name="Panel" type="Panel" parent="." unique_id=879210869]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1ymo6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=485300379]
-layout_mode = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=485300379]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -882.0
+offset_top = -475.5
+offset_right = 882.0
+offset_bottom = 475.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1761238299]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1761238299]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2" unique_id=1134489998]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=713956654]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=713956654]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=964369710]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=964369710]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "QUIZ EDITOR"
 
-[node name="GoBackButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=789397927]
+[node name="QuizTitleLabel" type="Label" parent="HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=2147283495]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "TITLE HERE"
+
+[node name="GoBackButton" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=789397927]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "GO BACK"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2" unique_id=1965498014]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2" unique_id=1965498014]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer" unique_id=1472414883]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer" unique_id=1472414883]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -60,26 +75,17 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer" unique_id=639837774]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer" unique_id=639837774]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1250574104]
-layout_mode = 2
-text = "question"
-
-[node name="QuestionTextTextEdit" type="TextEdit" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=338609587]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 150)
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1948525035]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1948525035]
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1307995965]
 layout_mode = 2
+text = "CHOOSE QUESTION TYPE"
 
-[node name="Label3" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1307995965]
-layout_mode = 2
-text = "choose type"
-
-[node name="QuestionTypeOptionButton" type="OptionButton" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1781843775]
+[node name="QuestionTypeOptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1781843775]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -89,47 +95,60 @@ popup/item_0/id = 0
 popup/item_1/text = "identification"
 popup/item_1/id = 1
 
-[node name="Label4" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1588167366]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1250574104]
 layout_mode = 2
-text = "option 1"
+text = "QUESTION TEXT"
 
-[node name="Option1LineEdit" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=630830354]
+[node name="QuestionTextTextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=338609587]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1588167366]
+layout_mode = 2
+text = "OPTION 1"
+
+[node name="Option1LineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=630830354]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+clear_button_enabled = true
 
-[node name="Label5" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1845663345]
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1845663345]
 layout_mode = 2
-text = "option 2"
+text = "OPTION 2"
 
-[node name="Option2LineEdit" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=614472147]
+[node name="Option2LineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=614472147]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+clear_button_enabled = true
 
-[node name="Label6" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=33493281]
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=33493281]
 layout_mode = 2
-text = "option 3"
+text = "OPTION 3"
 
-[node name="Option3LineEdit" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1389906777]
+[node name="Option3LineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1389906777]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+clear_button_enabled = true
 
-[node name="Label7" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=65342682]
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=65342682]
 layout_mode = 2
-text = "option 4"
+text = "OPTION 4"
 
-[node name="Option4LineEdit" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1655311644]
+[node name="Option4LineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1655311644]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+clear_button_enabled = true
 
-[node name="Label8" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1610653214]
+[node name="Label8" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1610653214]
 layout_mode = 2
-text = "multiple choice answer"
+text = "MULTIPLE CHOICE ANSWER"
 
-[node name="MultipleChoiceAnswerSpinBox" type="SpinBox" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=975225449]
+[node name="MultipleChoiceAnswerSpinBox" type="SpinBox" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=975225449]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -137,76 +156,84 @@ min_value = 1.0
 max_value = 4.0
 value = 1.0
 
-[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1284670282]
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1284670282]
 layout_mode = 2
-text = "identification answer"
+text = "IDENTIFICATION ANSWER"
 
-[node name="IdentificationAnswerLineEdit" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=384107251]
+[node name="IdentificationAnswerLineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=384107251]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+clear_button_enabled = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1334891122]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1334891122]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2053173093]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2053173093]
 layout_mode = 2
-text = "points"
+text = "POINTS"
 
-[node name="PointsSpinBox" type="SpinBox" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1988553896]
+[node name="PointsSpinBox" type="SpinBox" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1988553896]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 1.0
 value = 1.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1097168798]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1097168798]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=993211657]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=993211657]
 layout_mode = 2
-text = "duration"
+text = "TIME LIMIT"
 
-[node name="DurationSpinBox" type="SpinBox" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=603225486]
+[node name="TimeLimitSpinBox" type="SpinBox" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=603225486]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 5.0
 value = 5.0
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1005259466]
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1005259466]
 layout_mode = 2
 
-[node name="AddButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=511154654]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "add/update"
-
-[node name="ClearButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1144340711]
+[node name="AddButton" type="Button" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=511154654]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "clear"
+text = "ADD/UPDATE"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1451355322]
+[node name="ClearButton" type="Button" parent="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1144340711]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CLEAR"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1451355322]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="QuizEditorItemList" type="ItemList" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=726129665]
+[node name="QuizEditorItemList" type="ItemList" parent="HBoxContainer/VBoxContainer" unique_id=726129665]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DeleteButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1357925835]
+[node name="DeleteButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1357925835]
 layout_mode = 2
-text = "delete"
+text = "DELETE"
 
-[node name="QuizEditorDialog" type="AcceptDialog" parent="." unique_id=1027130288]
+[node name="QuizEditorAlertDialog" type="AcceptDialog" parent="." unique_id=1027130288]
 unique_name_in_owner = true
 oversampling_override = 1.0
 position = Vector2i(0, 36)
 
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
-[connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/QuestionTypeOptionButton" to="." method="_on_question_type_option_button_item_selected"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/AddButton" to="." method="_on_add_button_pressed"]
-[connection signal="item_activated" from="PanelContainer/HBoxContainer/VBoxContainer/QuizEditorItemList" to="." method="_on_quiz_editor_item_list_item_activated"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[node name="UpdateQuestionConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=901620562]
+unique_name_in_owner = true
+title = "PLEASE CONFIRM..."
+dialog_text = "PROCEED UPDATING THIS QUESTION?"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/VBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/QuestionTypeOptionButton" to="." method="_on_question_type_option_button_item_selected"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="item_activated" from="HBoxContainer/VBoxContainer/QuizEditorItemList" to="." method="_on_quiz_editor_item_list_item_activated"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="confirmed" from="UpdateQuestionConfirmationDialog" to="." method="_on_update_question_confirmation_dialog_confirmed"]
