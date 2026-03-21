@@ -78,3 +78,4 @@ fit_content = true
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RestartQuizButton" to="." method="_on_restart_quiz_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GoHomeButton" to="." method="_on_go_home_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]

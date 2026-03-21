@@ -62,11 +62,19 @@ func _on_go_to_hub_button_pressed() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	var selected_items = %QuizItemList.get_selected_items()
-	var index = selected_items[0]
-	QuizData.quiz_title = %QuizItemList.get_item_text(index)
-	QuizData.quiz_path = %QuizItemList.get_item_metadata(index)
-	get_tree().change_scene_to_file("res://scenes/quiz_play.tscn")
+	if %QuizItemList.is_anything_selected():
+		var selected_items = %QuizItemList.get_selected_items()
+		var index = selected_items[0]
+		QuizData.quiz_title = %QuizItemList.get_item_text(index)
+		QuizData.quiz_path = %QuizItemList.get_item_metadata(index)
+		
+		var player_details = load("res://data/player_details.res") as PlayerDetails
+		if player_details == null:
+			get_tree().change_scene_to_file("res://scenes/create_username.tscn")
+		else:
+			get_tree().change_scene_to_file("res://scenes/quiz_play.tscn")
+	else:
+		show_accept_dialog("WARNING", "SELECT A QUIZ TO PLAY")
 
 
 func _on_delete_button_pressed() -> void:

@@ -90,7 +90,7 @@ func _on_add_quiz_file_dialog_dir_selected(dir: String) -> void:
 	var selected_item = %QuizTitleItemList.get_item_metadata(selected_index)
 	
 	# 2. Format the timestamp (Removing 'T' and ':')
-	var raw_time = Time.get_datetime_string_from_system().replace(":", "-").replace("T", "_")
+	var raw_time = Time.get_datetime_string_from_system().replace(":", "-").replace("T", "_") 
 	
 	# 3. Use path_join to ensure there is a "/" between the folder and filename
 	var file_name = quiz_title + "_" + raw_time + ".res"
