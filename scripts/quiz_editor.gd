@@ -44,7 +44,6 @@ func add_multiple_choice():
 	question_item.question_type = QuestionItem.QuestionType.MULTIPLE_CHOICE
 	for i in options:
 		question_item.options.append(i)
-	question_item.points = %PointsSpinBox.value
 	question_item.time_limit = %TimeLimitSpinBox.value
 	question_item.correct_option = %MultipleChoiceAnswerSpinBox.value
 	
@@ -67,7 +66,6 @@ func add_identification():
 	item.question_type = QuestionItem.QuestionType.IDENTIFICATION
 	item.text = %QuestionTextTextEdit.text.strip_edges()
 	item.correct_answer = %IdentificationAnswerLineEdit.text.to_upper().strip_edges()
-	item.points = %PointsSpinBox.value
 	item.time_limit = %TimeLimitSpinBox.value
 	
 	var q = load(QuizData.quiz_path) as Questions
@@ -162,7 +160,6 @@ func _on_quiz_editor_item_list_item_activated(index: int) -> void:
 			%IdentificationAnswerLineEdit.text = selected_question.correct_answer
 			enable_identification()
 			disable_multiple_choice()
-		%PointsSpinBox.value = selected_question.points
 		%TimeLimitSpinBox.value = selected_question.time_limit
 
 
@@ -194,7 +191,6 @@ func _on_update_question_confirmation_dialog_confirmed() -> void:
 			return
 		item.correct_answer = %IdentificationAnswerLineEdit.text.strip_edges().to_upper()
 		
-	item.points = %PointsSpinBox.value
 	item.time_limit = %TimeLimitSpinBox.value
 	
 	q.questions[selected_index] = item

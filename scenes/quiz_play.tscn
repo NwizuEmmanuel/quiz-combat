@@ -81,12 +81,13 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Answers are case insensitive"
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/IdentificationAnswerBox" unique_id=1591770575]
+[node name="IdentificationAnswerLineEdit" type="LineEdit" parent="VBoxContainer/IdentificationAnswerBox" unique_id=197173318]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 18
 placeholder_text = "Answer here..."
-wrap_mode = 1
+clear_button_enabled = true
 
 [node name="MultipleChoiceOptionsBox" type="GridContainer" parent="VBoxContainer" unique_id=929824962]
 unique_name_in_owner = true
@@ -130,15 +131,7 @@ horizontal_alignment = 2
 
 [node name="PlayerLifeBar" type="ProgressBar" parent="MarginContainer2/PlayerLifeBox" unique_id=1074713926]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 45.0
-show_percentage = false
-
-[node name="Label2" type="Label" parent="MarginContainer2/PlayerLifeBox" unique_id=10002706]
-layout_mode = 2
-text = "2/30"
-horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=987594246]
 layout_mode = 1
@@ -160,15 +153,7 @@ text = "Boss"
 
 [node name="BossLifeBar" type="ProgressBar" parent="MarginContainer/BossLifeBox" unique_id=1590230205]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 45.0
-show_percentage = false
-
-[node name="Label2" type="Label" parent="MarginContainer/BossLifeBox" unique_id=602354904]
-layout_mode = 2
-text = "2/30"
-horizontal_alignment = 1
 
 [node name="QuizDialog" type="AcceptDialog" parent="." unique_id=282486625]
 unique_name_in_owner = true
@@ -198,10 +183,16 @@ unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
 
+[node name="DefeatBossPoint" type="Label" parent="MarginContainer3/VBoxContainer" unique_id=163063171]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
 [node name="QuizTimer" type="Timer" parent="." unique_id=1013348502]
 unique_name_in_owner = true
 one_shot = true
 
+[connection signal="text_submitted" from="VBoxContainer/IdentificationAnswerBox/IdentificationAnswerLineEdit" to="." method="_on_identification_answer_line_edit_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/MultipleChoiceOptionsBox/OptionA" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="VBoxContainer/MultipleChoiceOptionsBox/OptionB" to="." method="_on_option_b_pressed"]
 [connection signal="pressed" from="VBoxContainer/MultipleChoiceOptionsBox/OptionC" to="." method="_on_option_c_pressed"]
