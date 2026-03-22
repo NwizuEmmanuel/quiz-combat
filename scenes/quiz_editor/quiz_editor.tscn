@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bayl5swv4jvty"]
 
-[ext_resource type="Script" uid="uid://d1suklpkgoesf" path="res://scripts/quiz_editor.gd" id="1_0yhu0"]
-[ext_resource type="Texture2D" uid="uid://c3gnctu2ea20i" path="res://assets/images/chenspec-art-7018244.jpg" id="2_lvq7x"]
+[ext_resource type="Script" uid="uid://d1suklpkgoesf" path="res://scenes/quiz_editor/quiz_editor.gd" id="1_3wao0"]
+[ext_resource type="Texture2D" uid="uid://c3gnctu2ea20i" path="res://assets/images/chenspec-art-7018244.jpg" id="2_gt2h0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ymo6"]
-texture = ExtResource("2_lvq7x")
+texture = ExtResource("2_gt2h0")
 
 [node name="QuizEditor" type="Control" unique_id=698393837]
 layout_mode = 3
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0yhu0")
+script = ExtResource("1_3wao0")
 
 [node name="Panel" type="Panel" parent="." unique_id=879210869]
 layout_mode = 1

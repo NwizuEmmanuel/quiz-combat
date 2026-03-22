@@ -1,7 +1,7 @@
 extends Node
 
-var quiz_file = load(QuizData.quiz_path) as Questions
-var quiz_items: Array[QuestionItem] = quiz_file.questions
+var quiz_file: Questions
+var quiz_items: Array[QuestionItem] = []
 var total_questions = 0
 var current = 0
 var score = 0
@@ -15,6 +15,9 @@ var identification_answer = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(Questions)
+	quiz_file = load(QuizData.quiz_path) as Questions
+	quiz_items = quiz_file.questions
 	total_questions = quiz_items.size()
 	display_question()
 	player_life = MAX_LIFE
@@ -55,7 +58,7 @@ func display_question():
 		%QuizTimer.start(q.time_limit)
 	else:
 		save_quiz_data()
-		get_tree().change_scene_to_file("res://scenes/quiz_result.tscn")
+		get_tree().change_scene_to_file("res://scenes/quiz_result/quiz_result.tscn")
 
 func answer_feedback(mssg:String):
 	%QuizDialog.title = "INFO"
@@ -119,61 +122,16 @@ func deal_boss_damage():
 func deal_player_damage():
 	player_life -= deal_damage()
 
-func convert_multiple_choice_answer(ans: int) -> String:
-	var result = ""
-	if ans == 1:
-		result = "A"
-	elif ans == 2:
-		result = "B"
-	elif ans == 3:
-		result = "C"
-	elif ans == 4:
-		result = "D"
-	return result
-
-
-func quiz_result() -> String:
-	var total_question = QuizData.total_questions
-	var result_text = ""
-	result_text += "SCORE: %d/%d\n" % [score,total_question]
-	result_text += "DEFEAT BOSS POINT: %d\n" % defeat_boss_point
-	result_text += "[b]Quiz[/b]\n"
-	for i in range(quiz_items.size()):
-		if quiz_items[i].question_type == QuestionItem.QuestionType.MULTIPLE_CHOICE:
-			result_text += str(i+1)+": "+quiz_items[i].text+"\n\n"
-			result_text += "A: "+quiz_items[i].options[0]+"\n"
-			result_text += "B: "+quiz_items[i].options[1]+"\n"
-			result_text += "C: "+quiz_items[i].options[2]+"\n"
-			result_text += "D: "+quiz_items[i].options[3]+"\n"
-			for j in QuizData.failed_questions:				
-				if j.id == i:
-					result_text += "YOUR CHOICE: "+convert_multiple_choice_answer(j.choice)+"\n"
-					result_text += "[color=red]You failed this question\n[/color]"
-					break
-			result_text += "CORRECT: "+convert_multiple_choice_answer(quiz_items[i].correct_option)+"\n\n"
-		elif quiz_items[i].question_type == QuestionItem.QuestionType.IDENTIFICATION:
-			result_text += str(i+1)+": "+quiz_items[i].text+"\n\n"
-			for k in QuizData.failed_questions:
-				if k.id == i:
-					result_text += "YOUR CHOICE: "+k.choice+"\n"
-					result_text += "[color=red]You failed this question\n[/color]"
-					break
-			result_text += "CORRECT: "+quiz_items[i].correct_answer+"\n\n"
-	return result_text
-
 func save_quiz_data():
-	# 2. Format the timestamp (Removing 'T' and ':')
-	var raw_time = Time.get_datetime_string_from_system().replace(":", "-").replace("T", "_")
-	var file_path = "res://data/quiz_result.res"
-	var quiz_result_list_data = load(file_path) as QuizResultListData
-	var player_details = load("res://data/player_details.res") as PlayerDetails
-	var quiz_result_data = QuizResultData.new()
-	quiz_result_data.timestamp = raw_time
-	quiz_result_data.quiz = quiz_result()
-	quiz_result_list_data.user_fullname = player_details.user_fullname
-	quiz_result_list_data.quizzes.append(quiz_result_data)
+	var path = "user://data/all_player_stats.res"
+	var all_player_stats = load(path) as AllPlayerStats
+	var player_stats = PlayerStats.new()
+	player_stats.quiz_title = QuizData.quiz_title
+	player_stats.score = score
+	player_stats.dbp = defeat_boss_point
+	all_player_stats.all_stats.append(player_stats)
 	
-	ResourceSaver.save(quiz_result_list_data, file_path)
+	ResourceSaver.save(all_player_stats, path)
 
 func _on_option_a_pressed() -> void:
 	multiple_choice_answer = 1

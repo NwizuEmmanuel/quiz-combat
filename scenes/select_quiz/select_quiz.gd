@@ -58,7 +58,7 @@ func _on_file_dialog_file_selected(path: String) -> void:
 
 
 func _on_go_to_hub_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/hub.tscn")
+	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 
 
 func _on_play_button_pressed() -> void:
@@ -68,11 +68,11 @@ func _on_play_button_pressed() -> void:
 		QuizData.quiz_title = %QuizItemList.get_item_text(index)
 		QuizData.quiz_path = %QuizItemList.get_item_metadata(index)
 		
-		var player_details = load("res://data/player_details.res") as PlayerDetails
-		if player_details == null:
-			get_tree().change_scene_to_file("res://scenes/create_username.tscn")
+		var all_player_stats = load("user://data/all_player_stats.res") as AllPlayerStats 
+		if all_player_stats.user_fullname == "":
+			get_tree().change_scene_to_file("res://scenes/create_username/create_username.tscn")
 		else:
-			get_tree().change_scene_to_file("res://scenes/quiz_play.tscn")
+			get_tree().change_scene_to_file("res://scenes/play_quiz/play_quiz.tscn")
 	else:
 		show_accept_dialog("WARNING", "SELECT A QUIZ TO PLAY")
 

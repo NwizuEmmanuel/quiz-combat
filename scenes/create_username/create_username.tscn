@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://8vwrvemu4i3d"]
 
-[ext_resource type="Script" uid="uid://bymycl7rsn14c" path="res://scripts/create_username.gd" id="1_c0e60"]
+[ext_resource type="Script" uid="uid://bymycl7rsn14c" path="res://scenes/create_username/create_username.gd" id="1_c0e60"]
 [ext_resource type="Texture2D" uid="uid://c3gnctu2ea20i" path="res://assets/images/chenspec-art-7018244.jpg" id="2_k5scn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nntp0"]

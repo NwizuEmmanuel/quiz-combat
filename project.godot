@@ -22,7 +22,7 @@ buses/default_bus_layout=""
 [autoload]
 
 QuizData="*uid://c3cfiuef2xc2q"
-PrepareDataResources="*uid://b7bl4mtnll7ai"
+PrepareData="*uid://b7bl4mtnll7ai"
 
 [display]
 

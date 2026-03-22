@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://dlvqvhbykcels"]
 
-[ext_resource type="Script" uid="uid://cuvsy0wk7aqtv" path="res://scripts/quiz_play.gd" id="1_ypbgi"]
-[ext_resource type="Texture2D" uid="uid://djoh0csjxhwu3" path="res://assets/images/jlwd_2ucy_201006.jpg" id="2_003f2"]
+[ext_resource type="Script" uid="uid://cuvsy0wk7aqtv" path="res://scenes/play_quiz/play_quiz.gd" id="1_yubl4"]
+[ext_resource type="Texture2D" uid="uid://djoh0csjxhwu3" path="res://assets/images/jlwd_2ucy_201006.jpg" id="2_y360a"]
 
-[node name="QuizPlay" type="Control" unique_id=1457344942]
+[node name="PlayQuiz" type="Control" unique_id=1457344942]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ypbgi")
+script = ExtResource("1_yubl4")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1160010746]
 layout_mode = 1
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_003f2")
+texture = ExtResource("2_y360a")
 expand_mode = 3
 stretch_mode = 6
 

@@ -164,7 +164,7 @@ func _on_quiz_editor_item_list_item_activated(index: int) -> void:
 
 
 func _on_go_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/add_quiz.tscn")
+	get_tree().change_scene_to_file("res://scenes/add_quiz/add_quiz.tscn")
 
 
 func _on_update_question_confirmation_dialog_confirmed() -> void:

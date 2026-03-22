@@ -1,0 +1,17 @@
+extends Resource
+
+class_name PlayerStats
+
+func _init() -> void:
+	id = generate_unique_id()
+
+func generate_unique_id()->String:
+	var unix_time = Time.get_unix_time_from_system()
+	var random_val = randi() % 10000
+	return str(unix_time)+"_"+str(random_val)
+
+@export var id: String
+@export var score: int = 0
+# dbp = defeat boss point
+@export var dbp: int = 0
+@export var quiz_title: String = ""
