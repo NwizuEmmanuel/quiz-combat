@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://t2snd0iuhk86"]
 
 [ext_resource type="Script" uid="uid://m4olibl036ly" path="res://scenes/view_players_stats/view_players_stats.gd" id="1_wydv1"]
+[ext_resource type="Texture2D" uid="uid://c3gnctu2ea20i" path="res://assets/images/chenspec-art-7018244.jpg" id="2_mar02"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2q6h"]
+texture = ExtResource("2_mar02")
 
 [node name="ViewPlayersStats" type="Control" unique_id=955381926]
 layout_mode = 3
@@ -10,6 +14,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wydv1")
+
+[node name="Panel" type="Panel" parent="." unique_id=1141390982]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s2q6h")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=835793404]
 layout_mode = 1
@@ -25,6 +38,11 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1077103563]
 layout_mode = 2
+
+[node name="GoBackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1212911212]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Go Back"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1757387244]
 layout_mode = 2
@@ -84,6 +102,7 @@ filters = PackedStringArray("*.res")
 offset_right = 108.0
 offset_bottom = 41.0
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CreateNewFolderButton" to="." method="_on_create_folder_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ImportFileButton" to="." method="_on_import_file_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/DeleteButton" to="." method="_on_delete_button_pressed"]

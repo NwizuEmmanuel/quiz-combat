@@ -68,12 +68,12 @@ func _on_play_button_pressed() -> void:
 		QuizData.quiz_title = %QuizItemList.get_item_text(index)
 		QuizData.quiz_path = %QuizItemList.get_item_metadata(index)
 		
-		var all_player_stats = load("user://data/all_player_stats.res") as AllPlayerStats
+		var player_stats = load("user://data/player_stats.res") as PlayerStats
 		DirAccess.dir_exists_absolute("user://data/")
-		if all_player_stats == null:
-			all_player_stats = AllPlayerStats.new()
-			ResourceSaver.save(all_player_stats, "user://data/all_player_stats.res")
-		if all_player_stats.user_fullname == "":
+		if player_stats == null:
+			player_stats = PlayerStats.new()
+			ResourceSaver.save(player_stats, "user://data/player_stats.res")
+		if player_stats.username == "":
 			get_tree().change_scene_to_file("res://scenes/create_username/create_username.tscn")
 		else:
 			get_tree().change_scene_to_file("res://scenes/play_quiz/play_quiz.tscn")
@@ -94,3 +94,7 @@ func _on_delete_button_pressed() -> void:
 			show_accept_dialog("ERROR", "COULD NOT DELETE FILE. ERROR: " + str(error))
 	else:
 		show_accept_dialog("SELECT", "PLEASE SELECT A QUIZ TO DELETE FIRST.") 
+
+
+func _on_view_results_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/view_stats/view_stat.tscn")
