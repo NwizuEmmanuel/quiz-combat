@@ -1,12 +1,12 @@
 extends Node
-var all_player_stats = load("user://data/all_player_stats.res") as AllPlayerStats
+var player_stats = load("user://data/player_stats.res") as PlayerStats
 
 
 func _on_save_button_pressed() -> void:
-	all_player_stats = AllPlayerStats.new()
+	player_stats = PlayerStats.new()
 	if %FullnameLineEdit.text != "":
-		all_player_stats.user_fullname = %FullnameLineEdit.text.strip_edges()
-		ResourceSaver.save(all_player_stats, "user://data/all_player_stats.res")
+		player_stats.username = %FullnameLineEdit.text.strip_edges()
+		ResourceSaver.save(player_stats, "user://data/player_stats.res")
 		get_tree().change_scene_to_file("res://scenes/play_quiz/play_quiz.tscn")
 	else:
 		%AcceptDialog.title = "WARNING"
