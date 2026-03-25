@@ -3,7 +3,8 @@ extends Node
 @onready var tree: Tree = %Tree
 @onready var file_dialog: FileDialog = $FileDialog
 @onready var folder_dialog: ConfirmationDialog = $NewFolderDialog
-@onready var folder_input: LineEdit = $NewFolderDialog/FolderNameInput	
+@onready var folder_input: LineEdit = $NewFolderDialog/FolderNameInput
+@onready var richtext_label: RichTextLabel = %RichTextLabel	
 
 # The base directory your tree will display
 var root_path: String = "res://game_data/"
@@ -161,3 +162,47 @@ func _on_create_folder_pressed() -> void:
 
 func _on_go_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+
+
+func _on_tree_item_selected():
+	var selected = tree.get_selected()
+	if not selected:
+		return
+		
+	# Retrieve the file path we stored earlier
+	var file_path = selected.get_metadata(0)
+	
+	# Safety check: Is it actually a file and a .res resource?
+	if FileAccess.file_exists(file_path) and file_path.ends_with(".res"):
+		display_resource_content(file_path)
+	else:
+		richtext_label.text = "[color=gray]Select a valid .res file to view stats...[/color]"
+
+
+func display_resource_content(path: String):
+	# Check if the file exists before trying to load
+	if not FileAccess.file_exists(path):
+		richtext_label.text = "Error: File not found."
+		return
+	
+	# Load the resource natively
+	var resource = ResourceLoader.load(path)
+	
+	# Verify it's the correct type of data
+	if resource is PlayerStats:
+		var data = resource as PlayerStats
+		
+		# Build the BBCode display
+		var bbcode = "[b]Quiz Info:[/b] %s\n" % data.quiz_title
+		bbcode += "-------------------\n"
+		bbcode += "Player Name: %s\n" % data.username
+		bbcode += "Score: [color=yellow]%d[/color]\n" % data.score
+		
+		if data.defeated_boss:
+			bbcode += "Status: [color=green]Boss Defeated[/color]"
+		else:
+			bbcode += "Status: [color=red]Boss Active[/color]"
+			
+		richtext_label.text = bbcode
+	else:
+		richtext_label.text = "Error: File is not a valid GameData resource."
