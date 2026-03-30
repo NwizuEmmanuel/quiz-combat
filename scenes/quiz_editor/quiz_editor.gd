@@ -13,8 +13,10 @@ func _process(_delta: float) -> void:
 func list_questions():
 	var file = load(QuizData.quiz_path) as Questions
 	%QuizEditorItemList.clear()
+	var index = 1
 	for i in file.questions:
-		%QuizEditorItemList.add_item(i.text)
+		%QuizEditorItemList.add_item(str(index) + ": " + i.text)
+		index+= 1
 	question_count = file.questions.size()
 
 func show_alert_dialog(title:String, dialog_text: String):
@@ -202,6 +204,7 @@ func _on_update_question_confirmation_dialog_confirmed() -> void:
 	q.questions[selected_index] = item
 	ResourceSaver.save(q, QuizData.quiz_path)
 	%QuizEditorItemList.deselect_all()
+	list_questions()
 
 
 func _on_clear_button_pressed() -> void:

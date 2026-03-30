@@ -7,22 +7,24 @@ extends Node
 
 # The base directory your tree will display
 var save_path = "user://students_results.csv"
-var INTERNAL_CSV = save_path
+var INTERNAL_CSV = "user://students_results.csv"
 # The headers for your CSV file
-const CSV_HEADER = "ID,Username,Quiz Title,Score,Quiz Frequency,Defeated Bosses\n"
+const CSV_HEADER = "ID,Username,Quiz Title,Score,Total Questions,Quiz Frequency,Defeated Bosses,Date\n"
 
 func _ready():
 	setup_tree_columns()
 	load_csv_to_table(save_path)
 
 func setup_tree_columns():
-	tree.columns = 6
+	tree.columns = 8
 	tree.set_column_title(0, "ID")
 	tree.set_column_title(1, "Username")
 	tree.set_column_title(2, "Quiz Title")
 	tree.set_column_title(3, "Score")
-	tree.set_column_title(4, "Freq")
-	tree.set_column_title(5, "Bosses")
+	tree.set_column_title(4, "Total Questions")
+	tree.set_column_title(5, "Freq")
+	tree.set_column_title(6, "Bosses")
+	tree.set_column_title(7, "Date")
 
 func load_csv_to_table(path: String):
 	if not FileAccess.file_exists(path):
@@ -54,24 +56,28 @@ func load_csv_to_table(path: String):
 
 func _on_file_dialog_files_selected(paths: PackedStringArray):
 	var csv_content = CSV_HEADER
+	print(paths)
 	
 	for path in paths:
 		# Load the custom resource (QuizResultData)
-		var result = load(path) as PlayerStats
+		var result = ResourceLoader.load(path)
 		
 		if result:
 			# Format the row (comma-separated)
-			var row = "%s,%s,%s,%d,%d,%d\n" % [
+			var row = "%s,%s,%s,%d,%d,%d,%d,%s\n" % [
 				result.id,
 				result.username,
 				result.quiz_title,
 				result.score,
+				result.total_questions,
 				result.quiz_frequency,
-				result.defeated_boss_count
+				result.defeated_boss_count,
+				result.date_added
 			]
 			csv_content += row
 	
 	save_csv_file(csv_content)
+	load_csv_to_table(save_path)
 
 func save_csv_file(content: String):
 	var file = FileAccess.open(save_path, FileAccess.WRITE)

@@ -20,7 +20,7 @@ func show_result():
 	%ResultRichTextLabel.text = result_text
 
 func _on_go_home_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/add_quiz/add_quiz.tscn")
 
 
 func restart_quiz() -> void:

@@ -136,3 +136,7 @@ func _on_identification_answer_line_edit_text_submitted(new_text: String) -> voi
 	check_identification_answer(new_text.strip_edges())
 	run_quiz()
 	%IdentificationAnswerLineEdit.clear()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/add_quiz/add_quiz.tscn")
