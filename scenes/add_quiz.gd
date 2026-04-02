@@ -96,6 +96,7 @@ func _on_add_quiz_file_dialog_dir_selected(dir: String) -> void:
 	var file_name = quiz_title + ".res"
 	var full_path = dir.path_join(file_name)
 	
+	add_participants(selected_item)
 	# 4. Perform the copy
 	var error = DirAccess.copy_absolute(selected_item, full_path)
 	
@@ -142,3 +143,12 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	else:
 		print("Error importing file. Code: ", error)
 	list_quiz_files()
+
+
+func add_participants(quiz_path: String):
+	var path = "user://data/all_students_data.res"
+	var questions = load(quiz_path) as Questions
+	var all_students = load(path) as AllStudents
+	var students = all_students.all_students
+	questions.participants = students
+	ResourceSaver.save(questions, quiz_path)

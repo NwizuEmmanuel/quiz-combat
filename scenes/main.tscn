@@ -47,6 +47,10 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Create Quiz"
 
+[node name="RegisterStudentsBtn" type="Button" parent="VBoxContainer" unique_id=1306619184]
+layout_mode = 2
+text = "Register Students"
+
 [node name="ViewPlayersStatsButton" type="Button" parent="VBoxContainer" unique_id=1078040820]
 layout_mode = 2
 size_flags_vertical = 3
@@ -72,5 +76,6 @@ theme_override_font_sizes/font_size = 82
 text = "QUIZ QUEST CREATOR"
 
 [connection signal="pressed" from="VBoxContainer/CreateQuizButton" to="." method="_on_create_quiz_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RegisterStudentsBtn" to="." method="_on_register_students_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/ViewPlayersStatsButton" to="." method="_on_view_players_stats_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
