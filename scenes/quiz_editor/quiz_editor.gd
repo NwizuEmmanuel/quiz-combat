@@ -129,6 +129,7 @@ func _on_add_button_pressed() -> void:
 			add_multiple_choice()
 		elif index == 1:
 			add_identification()
+		clear_inputs()
 	elif %QuizEditorItemList.is_anything_selected():
 		%UpdateQuestionConfirmationDialog.popup_centered()
 
@@ -204,6 +205,7 @@ func _on_update_question_confirmation_dialog_confirmed() -> void:
 	q.questions[selected_index] = item
 	ResourceSaver.save(q, QuizData.quiz_path)
 	%QuizEditorItemList.deselect_all()
+	clear_inputs()
 	list_questions()
 
 

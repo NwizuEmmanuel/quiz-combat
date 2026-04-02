@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5lnq1moklflw"]
 
 [ext_resource type="Script" uid="uid://b46oj7owjjnx" path="res://scenes/main/main.gd" id="1_iuonh"]
+[ext_resource type="Theme" uid="uid://dc6o4gyd3plt7" path="res://commons/ui_theme.theme" id="1_k2fmo"]
 [ext_resource type="Texture2D" uid="uid://baevvt56b0o46" path="res://assets/backgrounds/classroom.png" id="2_iuonh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6xti"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_k2fmo")
 script = ExtResource("1_iuonh")
 
 [node name="Panel" type="Panel" parent="." unique_id=408102322]
@@ -59,13 +61,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -240.0
-offset_top = 101.0
-offset_right = 240.0
-offset_bottom = 184.0
+offset_left = -287.5
+offset_right = 287.5
+offset_bottom = 153.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 82
-text = "QUIZQUEST"
+text = "QUIZ QUEST CREATOR"
 
 [connection signal="pressed" from="VBoxContainer/CreateQuizButton" to="." method="_on_create_quiz_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ViewPlayersStatsButton" to="." method="_on_view_players_stats_button_pressed"]
